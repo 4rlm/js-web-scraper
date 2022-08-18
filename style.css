@@ -47,3 +47,17 @@ img:hover {
   filter: brightness(0.3);
 }
 
+#user-name-wrapper {
+  width: 200px;
+  height: 100px;
+  padding: 15px;
+  background-color: blue;
+  color: white;
+}
+
+#clear-username-btn {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+

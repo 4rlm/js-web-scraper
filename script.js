@@ -1,19 +1,53 @@
+var body = [];
+var links = [];
+var linksString = "";
+var hrefs = []
+var parsedBody = document.getElementById('display-parsed-body');
 
-var body = document.getElementsByTagName("body")[0];
-var div = document.createElement('div');
-div.setAttribute('id', 'divy');
-var p = document.createElement('p');
-p.setAttribute('id', 'text');
-p.textContent = "Hello World!";
-div.appendChild(p);
-body.appendChild(div);
+var url = "https://www.toyotalincolnwood.com/new-vehicles/";
 
-var img = document.createElement('img');
-img.setAttribute('width', '200');
-img.setAttribute('height', '300');
-img.setAttribute('alt', 'jesus');
-img.src = 'jesus.jpeg';
+async function getSourceAsDOM() {
+  try {
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("GET",url,false);
+    xmlhttp.send();
+    parser=new DOMParser();
+    var response = parser.parseFromString(xmlhttp.responseText,"text/html"); 
+    // body = response.getElementsByTagName('body')
 
-div.appendChild(img);
+    // links = response.getElementsByTagName('a');
+    links = response.getElementsByTagName('a');
 
+    for (var i = 0; i<links.length; i++)
+    {   
+        hrefs.push(links[i].href);
+        linksString += links[i].href + "<br>";
+        // linksString += links[i].textContent + "<br>";
+    }
+
+    console.log(links);
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getSourceAsDOM()
+
+// parsedBody.innerHTML = body[0].innerHTML;  // This Works
+parsedBody.innerHTML = linksString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// iterator();
 
